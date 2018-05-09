@@ -5,7 +5,7 @@ import './index.css';
 
 function Square(props) {
   return (
-    <button className="square" onClick={props.onClick}>
+    <button className={"square player-"+props.value} onClick={props.onClick}>
       {props.value}
     </button>
   );
@@ -100,11 +100,11 @@ class Game extends React.Component {
       );
     });
 
-    let status;
+    let status, nextPlayer = this.state.xIsNext ? "X" : "O" ;
     if (winner) {
       status = "Winner: " + winner;
     } else {
-      status = "Next player: " + (this.state.xIsNext ? "X" : "O");
+      status = "Next player: " + nextPlayer;
     }
 
     return (
@@ -116,7 +116,7 @@ class Game extends React.Component {
           />
         </div>
         <div className="game-info">
-          <div>{status}</div>
+          <div className={"player-"+nextPlayer}>{status}</div>
           <ol>{moves}</ol>
         </div>
       </div>
